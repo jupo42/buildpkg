@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/didbs/current/bin/bash
 #
 # A simple script to create a sandbox for a new package
 #
@@ -22,17 +22,16 @@ do
     ${__mkdir} $topdir/$i
 done
 
-${__cp} $buildpkgscripts/build.sh.generic $topdir/build.sh
+${__cp} $buildpkgscripts/build.sh.template $topdir/build.sh
 if [ "$(${__uname} -s)" == "IRIX" -o "$(${__uname} -s)" == "IRIX64" ]; then
     ${__sed} -e "s;/bin/bash;$__bash;g" $topdir/build.sh > $topdir/build.sh.tmp
     ${__mv} $topdir/build.sh.tmp $topdir/build.sh
-    ${__cp} $buildpkgscripts/pkgdef.template.irix $topdir/meta/pkgdef
-fi
-
-if [ "$(${__uname} -s)" == "SunOS" ]; then
     ${__cp} $buildpkgscripts/pkgdef.template $topdir/meta/pkgdef
 fi
 
-${__cp} $buildpkgscripts/relnotes.template.irix $topdir/meta/relnotes
+
+${__cp} $buildpkgscripts/relnotes.template $topdir/meta/relnotes
+${__cp} $buildpkgscripts/changelog.template $topdir/meta/ChangeLog
+
 # Make build script executable
 chmod 755 $topdir/build.sh

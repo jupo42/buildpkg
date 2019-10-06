@@ -1008,7 +1008,7 @@ generic_install_perl()
 	# but that will break buildpkg since they are processed
 	# later and the names thus change leaving pkgdef broken
         $d =~ /\Q$_\E/ && return
-            for qw|/etc /usr/tgcware/bin /usr/tgcware/share|;
+            for qw|/etc $topinstalldir/bin $topinstalldir/share|;
 
         $dirs[@dirs] = $_;
         }
@@ -1039,14 +1039,7 @@ generic_install_perl()
 #
 # This function should be implemented in the pr. packaging system
 # function library.
-case $OSTYPE in
-    solaris*)	. $buildpkgscripts/buildpkg.packaging.solaris
-		;;
-    irix*)	. $buildpkgscripts/buildpkg.packaging.irix
-		;;
-    *)		echo "No packaging system function library available for this OS"
-		;;
-esac
+. $buildpkgscripts/buildpkg.packaging
 
 # generic_pack_perl(): Package a perl module
 # params: same as generic_pack
