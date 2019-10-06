@@ -1,4 +1,5 @@
 # Global function library for buildpkg
+# Copyright (C) 2019 Justin Pope <jupo42@gmail.com>
 # Copyright (C) 2003-2019 Tom G. Christensen <tgc@jupiterrise.com>
 
 # This program is free software: you can redistribute it and/or modify
@@ -15,8 +16,8 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 # Written by Tom G. Christensen <tgc@jupiterrise.com>.
+# Revisions by Justin Pope <jupo42@gmail.com>
 
-#
 # This file is designed to be sourced by pr. package buildscripts
 #
 # We rely on an environment variable called BUILDPKG_BASE to
@@ -62,13 +63,13 @@ stagedir=$buildpkgbase/$pkgdir/stage
 srcdir=$buildpkgbase/$pkgdir/src
 patchdir=$srcdir # Allow the possibility of easily putting a load of patches in a different location
 metadir=$buildpkgbase/$pkgdir/meta
-distdir=$buildpkgbase/distfiles/beta
+distdir=$buildpkgbase/distfiles
 topsrcdir=$topdir-$version # it may be necessary to override this
 
 srcfiles=$buildpkgbase/srcfiles
 
-pkgdirdesig=tgcware # topinstalldir suffix
-topinstalldir=/usr/$pkgdirdesig
+pkgdirdesig=tgccont # topinstalldir suffix
+topinstalldir=/usr/local
 prefix=$topinstalldir
 metainstalldir=$topinstalldir
 
@@ -97,7 +98,7 @@ _os=$(${__uname} -sr|${__sed} -e 's/ //g' -e 's/\.//g'|${__tr} '[A-Z]' '[a-z]')
 # pkg information.
 # The following 3 vars can be used when constructing pkg metadata
 # Override as necessary.
-pkgprefix=SB
+pkgprefix=tgcc_
 pkgname=$pkgprefix$topdir # overriding this will be common
 name=$topdir # as will this ditto
 

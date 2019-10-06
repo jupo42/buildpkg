@@ -1,5 +1,6 @@
 # Function library for buildpkg framework
 # It adds support for creating Irix packages in 'inst' format
+# Copyright (C) 2019 Justin Pope <jupo42@gmail.com>
 # Copyright (C) 2003-2019 Tom G. Christensen <tgc@jupiterrise.com>
 
 # This program is free software: you can redistribute it and/or modify
@@ -16,6 +17,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 # Written by Tom G. Christensen <tgc@jupiterrise.com>.
+# Revisions by Justin Pope <jupo42@gmail.com>
 
 #
 # Define tool programs
@@ -57,9 +59,12 @@ dostrip_static=0 # Atleast std. Irix strip seems to mangle archives if strip -f 
 # For 5.3 you must have the new linker from patchSG0001068 otherwise
 # -f is undocumented and renders DSOs unlinkable.
 # Change these if you're using strip from GNU Binutils (*not* recommended)
-strip_elf_args="" # GNU default is -g
-strip_shared_args="-f" # GNU default is -g
-strip_static_args="-f" # GNU default is -g
+#strip_elf_args="" # GNU default is -g
+#strip_shared_args="-f" # GNU default is -g
+#strip_static_args="-f" # GNU default is -g
+strip_elf_args="-g"
+strip_shared_args="-g"
+strip_static_args="-g"
 
 # Other
 usedepend=1 # Don't use depend file even if it's available
@@ -70,8 +75,8 @@ include_source=0 # Include source[x] in the opt.src subsystem and not just patch
 useautodir=1 # Enable or disable the auto_dir run
 
 # vendor & contact information to be added in relnotes
-pkgedby="Tom G. Christensen"
-email="irixpkg@jupiterrise.com"
+pkgedby="Justin Pope"
+email="jupo42@gmail.com"
 
 # ver_width controls the width of the pkgversion numbers created
 # do *not* change this blindly
@@ -128,8 +133,8 @@ declare -a opfiles # Files that should have an ops associated
 declare -a opscript # Ops to associate with opfiles
 
 #override defaults
-pkgprefix=tgc_
-pkgname=$pkgprefix$topdir
+#pkgprefix=tgc_
+#pkgname=$pkgprefix$topdir
 
 os=irix`${__uname} -r`
 _os=$(${__uname} -sr|${__sed} -e 's/ //g' -e 's/\.//g' -e 's/IRIX64/IRIX/g'|${__tr} '[A-Z]' '[a-z]')
@@ -142,7 +147,7 @@ META_CLEAN="$topdir.spec $topdir.idb files.tmp ${depends##*/}_auto ${depends##*/
 # Host specific configuration
 [ -r $buildpkgscripts/config.$($HOSTNAME -s).irix ] && . $buildpkgscripts/config.$($HOSTNAME -s).irix
 
-distfile='$topdir-$version-$pkgver.tgc-$os-$cpu-$pkgdirdesig.tardist'
+distfile='$topdir-$version-$pkgver.jp-$os-$cpu-$pkgdirdesig.tardist'
 
 #####################################################
 # Internal helper functions
