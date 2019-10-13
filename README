@@ -31,9 +31,9 @@ build packages.
  * The environment variable BUILDPKG_BASE should point to your packages
  * check the value of topinstalldir in buildpkg.functions
  * check the value of pkgprefix in buildpkg.functions and
-   buildpkg.packaging.irix
+   buildpkg.packaging
  * check tool paths in buildpkg.tools and override with a
-   <hostname>.irix or <hostname>.solaris config file.
+   <hostname>.irix config file.
  * for building perl modules you must also adjust paths
    in generic_install_perl
 
