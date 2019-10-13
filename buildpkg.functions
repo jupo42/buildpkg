@@ -54,9 +54,6 @@ fi
 #		All patching will be done from *within* $srcdir/$topsrcdir directory with patch -p1
 #		patches must be in uncompressed format
 
-# Define tools programs in __ prefixed namespace
-. $BUILDPKG_SCRIPTS/buildpkg.tools
-
 # Define defaults
 pkgdir=${PWD##*/} # topdir under $BUILDPKG_BASE
 stagedir=$buildpkgbase/$pkgdir/stage
@@ -73,9 +70,19 @@ topinstalldir=/usr/local
 prefix=$topinstalldir
 metainstalldir=$topinstalldir
 
+# Define tools programs in __ prefixed namespace
+. $BUILDPKG_SCRIPTS/buildpkg.tools
+
 # The default configure args
 configure_args=(--prefix=$prefix --disable-nls)
 __configure="./configure"
+
+# Set default build env variables
+export CPPFLAGS="-I$prefix/include"
+export LDFLAGS="-L$prefix/lib -Wl,-rpath,$prefix/lib"
+export PKG_CONFIG_PATH="$prefix/lib/pkgconfig"
+export LD_LIBRARYN32_PATH="$prefix/lib32:$didbs/$didbsver/lib32:$didbs/lib32"
+export CONFIG_SHELL="$didbs/bin/bash"
 
 # Docdir relative to $prefix
 _docdir=share/doc

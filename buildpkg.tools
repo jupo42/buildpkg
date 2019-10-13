@@ -1,26 +1,30 @@
 # Global tool defintions for buildpkg
 
+# didbs directory locations
+didbs=/usr/didbs/current
+didbsver=gbs9_1
+
 # Define tool programs in rpm style __ prefixed namespace
-__bash=/usr/didbs/current/bin/bash
-__strip=/usr/didbs/current/gbs9_1/bin/strip
+__bash=$didbs/bin/bash
+__strip=$didbs/$didbsver/bin/strip
 __uname=/usr/bin/uname
-__tar=/usr/didbs/current/bin/tar # GNU tar v1.14 or better please!
+__tar=$didbs/bin/tar # GNU tar v1.14 or better please!
 __vtar=/usr/bin/tar # vendor supplied tar
-__bzip2=/usr/didbs/current/bin/bzip2
-__gzip=/usr/didbs/current/bin/gzip
-__xz=/usr/didbs/current/bin/xz
-__lzip=/usr/didbs/current/bin/lzma
-__patch=/usr/local/bin/patch # GNU patch 2.5 or better please!
+__bzip2=$didbs/bin/bzip2
+__gzip=$didbs/bin/gzip
+__xz=$didbs/bin/xz
+__lzip=$didbs/bin/lzma
+__patch=$prefix/bin/patch # GNU patch 2.5 or better please!
 __rm=/usr/bin/rm
 __rmdir=/usr/bin/rmdir
 __mkdir=/usr/bin/mkdir
-__make=/usr/didbs/current/bin/make # GNU make 3.80 or better please!
+__make=$didbs/bin/make # GNU make 3.80 or better please!
 __find=/usr/bin/find # vendor supplied find, GNU find will require changes to the script
 __xargs=/usr/bin/xargs
 __cat=/usr/bin/cat
-__awk=/usr/didbs/current/bin/awk # This must be nawk or GNU awk - plain /usr/bin/awk will *not* work
+__awk=$didbs/bin/awk # This must be nawk or GNU awk - plain /usr/bin/awk will *not* work
 __sed=/usr/bin/sed
-__gsed=/usr/didbs/current/bin/sed
+__gsed=$didbs/bin/sed
 __sort=/usr/bin/sort
 __cut=/usr/bin/cut
 __ls=/usr/bin/ls
@@ -28,11 +32,11 @@ __expr=/usr/bin/expr
 __mv=/usr/bin/mv
 __mkdir=/usr/bin/mkdir
 __cp=/usr/bin/cp
-__gcp=/usr/didbs/current/bin/cp
+__gcp=$didbs/bin/cp
 __tee=/bin/tee
 __grep=/bin/grep
 __egrep=/bin/egrep
-__ggrep=/usr/didbs/current/bin/grep # GNU grep
+__ggrep=$didbs/bin/grep # GNU grep
 __uniq=/bin/uniq
 __basename=/bin/basename
 __dirname=/bin/dirname
@@ -40,17 +44,17 @@ __tr=/bin/tr
 __file=/usr/bin/file # Used by do_strip()
 __ln=/usr/bin/ln
 __ln_s="/usr/bin/ln -s"
-__install=/usr/didbs/current/bin/install # BSD compatible install - usually GNU install
+__install=$didbs/bin/install # BSD compatible install - usually GNU install
 __compress=/usr/bsd/compress
 __pack=/usr/bin/pack
-__sha1sum=/usr/didbs/current/bin/sha1sum
-__unzip=/usr/didbs/current/bin/unzip
+__sha1sum=$didbs/bin/sha1sum
+__unzip=$didbs/bin/unzip
 __head=/usr/bin/head # Must support -n
-__perl=/usr/didbs/current/bin/perl
-__readlink=/usr/didbs/current/bin/readlink
+__perl=$didbs/bin/perl
+__readlink=$didbs/bin/readlink
 __ldd=/usr/bin/ldd
-__curl=/usr/didbs/current/bin/curl
+__curl=$didbs/bin/curl
 
 # Groff stuff for manpages
-__nroff=/usr/didbs/current/bin/nroff
+__nroff=$didbs/bin/nroff
 NROFFOPTS="-c -mandoc -Tascii -t"

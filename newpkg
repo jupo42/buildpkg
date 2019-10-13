@@ -22,14 +22,9 @@ do
     ${__mkdir} $topdir/$i
 done
 
-${__cp} $buildpkgscripts/build.sh.template $topdir/build.sh
-if [ "$(${__uname} -s)" == "IRIX" -o "$(${__uname} -s)" == "IRIX64" ]; then
-    ${__sed} -e "s;/bin/bash;$__bash;g" $topdir/build.sh > $topdir/build.sh.tmp
-    ${__mv} $topdir/build.sh.tmp $topdir/build.sh
-    ${__cp} $buildpkgscripts/pkgdef.template $topdir/meta/pkgdef
-fi
+${__sed} -e "s;/bin/bash;$__bash;g" $buildpkgscripts/build.sh.template > $topdir/build.sh
 
-
+${__cp} $buildpkgscripts/pkgdef.template $topdir/meta/pkgdef
 ${__cp} $buildpkgscripts/relnotes.template $topdir/meta/relnotes
 ${__cp} $buildpkgscripts/changelog.template $topdir/meta/ChangeLog
 
